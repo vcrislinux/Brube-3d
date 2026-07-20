@@ -18,6 +18,10 @@ www/
 .vscode/
 *.log
 
-# nao versionar dados sensiveis de licenca
+# dados sensiveis / internos (nao publicar)
 chaves.csv
 SEGURANCA-CHAVES.txt
+ATUALIZACOES.txt
+MANUAL-ATUALIZACAO.txt
+server/apps-script/
+scripts/gerar-chaves.js
