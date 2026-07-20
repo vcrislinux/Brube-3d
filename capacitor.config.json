@@ -1,0 +1,23 @@
+{
+  "appId": "com.brube3d.calc",
+  "appName": "Brube Calc",
+  "webDir": "www",
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    },
+    "SplashScreen": {
+      "launchAutoHide": false,
+      "launchShowDuration": 0,
+      "backgroundColor": "#0f172a",
+      "androidSplashResourceName": "splash_blank",
+      "showSpinner": false
+    },
+    "GoogleAuth": {
+      "scopes": ["email", "profile"],
+      "clientId": "1818785847-k9uadkg3nikd2b4hr89fkenqdblacc32.apps.googleusercontent.com",
+      "serverClientId": "1818785847-k9uadkg3nikd2b4hr89fkenqdblacc32.apps.googleusercontent.com",
+      "forceCodeForRefreshToken": false
+    }
+  }
+}

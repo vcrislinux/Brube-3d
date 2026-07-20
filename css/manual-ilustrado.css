@@ -1,0 +1,129 @@
+.manual-ilustrado {
+  max-width: 640px;
+}
+
+.manual-ilust-hero {
+  margin: 0 0 22px;
+  padding: 18px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  background:
+    radial-gradient(120% 100% at 0% 0%, rgba(56, 189, 248, 0.16), transparent 55%),
+    linear-gradient(160deg, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.35));
+}
+
+.manual-ilust-kicker {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+}
+
+.manual-ilust-hero h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.25rem, 4.5vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.manual-ilust-hero p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+.manual-ilust-sec {
+  margin: 0 0 18px;
+  padding: 16px 14px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--field-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.manual-ilust-sec h2 {
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.manual-ilust-sec h2 span {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(37, 99, 235, 0.35);
+  color: #e0f2fe;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.manual-ilust-sec p {
+  margin: 0 0 12px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.manual-ilust-sec figure {
+  margin: 0;
+}
+
+.manual-ilust-sec img {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.35);
+  background: #0b1220;
+}
+
+.manual-ilust-sec figcaption {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+
+.manual-ilust-nota {
+  margin: 8px 0 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  background: rgba(251, 191, 36, 0.08);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.manual-ilust-nota strong {
+  color: #fbbf24;
+}
+
+.manual-ilust-lista {
+  margin: 0 0 12px;
+  padding-left: 1.2em;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.manual-ilust-lista li {
+  margin: 0 0 6px;
+}
+
+.manual-ilust-nota code {
+  font-size: 0.92em;
+  word-break: break-all;
+}

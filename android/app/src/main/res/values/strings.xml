@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Brube Calc</string>
+    <string name="title_activity_main">Brube Calc</string>
+    <string name="package_name">com.brube3d.calc</string>
+    <string name="custom_url_scheme">com.brube3d.calc</string>
+</resources>

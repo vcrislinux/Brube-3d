@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Orçamento</title>
+  <meta name="theme-color" content="#2563eb">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/manual-ilustrado.css">
+</head>
+
+<body>
+  <div class="container manual-ilustrado">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Orçamento</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <span class="empresa-nome">Manual ilustrado</span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+
+    <header class="manual-ilust-hero">
+      <p class="manual-ilust-kicker">Orçamento com peças do catálogo</p>
+      <h1>Como montar um Orçamento</h1>
+      <p>Monte o orçamento com várias peças do catálogo, ajuste quantidades e envie o PDF para o cliente.</p>
+    </header>
+
+    <aside class="manual-ilust-nota" style="margin-bottom:18px">
+      <strong>Diferença:</strong> este fluxo é o botão <strong>Orçamento</strong> da tela inicial (várias peças do catálogo). O orçamento gerado pela <strong>Calculadora</strong> é outro caminho — veja o manual da Calculadora.
+    </aside>
+
+    <section class="manual-ilust-sec">
+      <h2><span>1</span> Abrir Orçamento</h2>
+      <p>Na tela inicial, toque em <strong>Orçamento</strong>.</p>
+      <figure>
+        <img src="img/manual-orcamento/01-inicio-orcamento.jpeg" alt="Tela inicial com botão Orçamento" loading="lazy">
+        <figcaption>Início → Orçamento</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>2</span> Cliente e prazo</h2>
+      <p>Preencha o <strong>cliente</strong> e o <strong>prazo de entrega</strong>. Em <strong>Itens do orçamento</strong>, toque em <strong>+ Adicionar do catálogo</strong>.</p>
+      <p>Enquanto não houver itens, a quantidade e o valor total ficam em zero.</p>
+      <figure>
+        <img src="img/manual-orcamento/02-tela-orcamento.jpeg" alt="Tela Orçamento vazia com cliente e prazo" loading="lazy">
+        <figcaption>Cliente, prazo e Adicionar do catálogo</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>3</span> Escolher peças do catálogo</h2>
+      <p>Pesquise se precisar, marque uma ou mais peças (ou use <strong>Marcar todos</strong>). O botão <strong>Adicionar selecionadas</strong> só libera com pelo menos uma marcada.</p>
+      <figure>
+        <img src="img/manual-orcamento/03-adicionar-catalogo.jpeg" alt="Modal Adicionar do catálogo com peças selecionadas" loading="lazy">
+        <figcaption>Selecionar e adicionar peças</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>4</span> Ajustar quantidades</h2>
+      <p>Cada peça vira um card com foto, material, preço unitário e observação (peso, tempo etc.). Use <strong>−</strong> e <strong>+</strong> para mudar a quantidade; o valor do item atualiza na hora. <strong>Remover</strong> tira a peça do orçamento.</p>
+      <figure>
+        <img src="img/manual-orcamento/04-itens-quantidade.jpeg" alt="Itens do orçamento com quantidade e totais por peça" loading="lazy">
+        <figcaption>Itens com quantidade e subtotal</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>5</span> Totais, observações e PDF</h2>
+      <p>Role até o fim: veja a <strong>quantidade total de peças</strong> e o <strong>valor total</strong>. Preencha observações gerais se quiser. Os dados de <strong>Pagamento</strong> vêm das Configurações.</p>
+      <p>Toque em <strong>Salvar / Compartilhar PDF</strong>.</p>
+      <figure>
+        <img src="img/manual-orcamento/05-totais-pdf.jpeg" alt="Totais, pagamento e botão Salvar PDF" loading="lazy">
+        <figcaption>Resumo e gerar PDF</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>6</span> PDF do orçamento</h2>
+      <p>O PDF traz logo, empresa, cliente, prazo, tabela de itens (foto, descrição, qtd, valor por peça e total), totais e dados de pagamento. No celular você envia por WhatsApp, Drive etc.</p>
+      <figure>
+        <img src="img/manual-orcamento/06-pdf-orcamento.jpeg" alt="PDF do orçamento com itens e totais" loading="lazy">
+        <figcaption>Orçamento em PDF pronto para enviar</figcaption>
+      </figure>
+    </section>
+
+    <aside class="manual-ilust-nota">
+      <strong>Dica:</strong> cadastre bem as peças no <strong>Catálogo</strong> (foto, preço e detalhes) antes — o orçamento fica mais rápido e o PDF sai completo. Para uma peça nova calculada na hora, use a <strong>Calculadora → Gerar Orçamento</strong>.
+    </aside>
+
+    <div class="actions" style="margin-top:20px">
+      <button type="button" class="secondary" onclick="history.length > 1 ? history.back() : irInicio()">Voltar</button>
+      <button type="button" onclick="irInicio()">Início</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+========================================
+  BRUBE CALC — Como atualizar o app
+  Manual ilustrado (cliente)
+========================================
+
+Arquivo HTML do app: manual-atualizacao.html
+Imagens: img/manual-atualizacao/
+
+No celular:
+  Configurações → Manual → Como atualizar (com telas)
+
+Ou abra no PC: manual-atualizacao.html
+
+Passos (resumo):
+  1. Configurações → Verificar atualizações
+  2. Confirmar nova versão (OK)
+  3. Download do APK no Google Drive
+  4. Aceitar avisos de segurança (Drive / Chrome)
+  5. Abrir o arquivo baixado
+  6. Instalador do pacote → Atualizar
+  7. Se o Play Protect bloquear: Mais detalhes → Instalar assim mesmo
+  8. Abrir o app atualizado
+
+As imagens originais ficam também em /Telas (prints do WhatsApp).

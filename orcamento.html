@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Orçamento</title>
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
+  <link rel="shortcut icon" href="ico/favicon.ico">
+  <link rel="apple-touch-icon" href="ico/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Orçamento</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <img class="logo-img logo-empresa" alt="Logo da empresa" hidden>
+        <span class="empresa-nome" data-config="empresa"></span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <p class="subtitle">Data: <span id="data"></span></p>
+
+    <div class="grid">
+      <div class="field">
+        <label for="cliente">Cliente</label>
+        <input id="cliente" type="text">
+      </div>
+      <div class="field">
+        <label for="peca">Nome da peça</label>
+        <input id="peca" type="text">
+      </div>
+      <div class="field full">
+        <label for="material">Material / Cor</label>
+        <input id="material" type="text" placeholder="Ex.: PLA preto">
+      </div>
+    </div>
+
+    <div class="field full orc-foto-box">
+      <label>Imagem da peça</label>
+      <p class="field-hint">Opcional — galeria ou câmera, com corte para enquadrar. Aparece no PDF e pode ir para o catálogo.</p>
+      <div class="orc-foto-row">
+        <img id="orc_foto_preview" class="orc-foto-preview" alt="Prévia da peça" hidden>
+        <div class="orc-foto-actions">
+          <button type="button" class="btn-file" onclick="escolherFonteFoto()">Adicionar imagem</button>
+          <input id="orc_foto_galeria" type="file" accept="image/*" onchange="importarFotoArquivo(this)" hidden>
+          <button type="button" class="secondary" id="orc_foto_remover" hidden onclick="removerFotoOrcamento()">Remover</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="resultado">
+      <div class="row"><span>Quantidade de peças</span><b id="qtd">1</b></div>
+      <div class="highlight">
+        <div class="card-total unit">
+          <span>Valor por peça</span>
+          <strong id="valorUnit">R$ 0,00</strong>
+        </div>
+        <div class="card-total">
+          <span>Valor total</span>
+          <strong id="valor">R$ 0,00</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="field full" style="margin-top:18px">
+      <label for="obs">Observações</label>
+      <textarea id="obs" style="height:110px"></textarea>
+    </div>
+
+    <label class="orc-check" for="addCatalogo">
+      <input id="addCatalogo" type="checkbox" onchange="atualizarOpcaoCatalogo()">
+      <span>
+        <strong>Adicionar este item ao catálogo</strong>
+        <small>Salva nome, peso, tempo, custo, valor de venda e a imagem (se houver), para reutilizar depois.</small>
+      </span>
+    </label>
+    <p class="field-hint" id="addCatalogoHint" hidden>Preencha o <strong>Nome da peça</strong>. Ao gerar o PDF (ou tocar em “Adicionar ao catálogo”), o item entra no catálogo com os dados deste cálculo.</p>
+    <div class="actions orc-cat-actions" id="orcCatActions" hidden>
+      <button type="button" class="secondary" onclick="adicionarItemAoCatalogo()">Adicionar ao catálogo</button>
+    </div>
+
+    <hr>
+
+    <div class="contato">
+      <p class="pagamento-titulo"><b>Pagamento</b></p>
+      <p><b>Banco:</b> <span data-config="banco"></span></p>
+      <p><b>Titular da Conta:</b> <span data-config="pixNome"></span></p>
+      <p><b>Chave Pix:</b> <span data-config="pixChave"></span></p>
+      <p><b>Instagram:</b> <a class="ig-link" data-config="instagram"></a></p>
+      <p><b>Responsáveis:</b> <span data-config="responsaveis"></span></p>
+      <p><b>Whatsapp:</b> <span data-config="whatsapp"></span></p>
+    </div>
+
+    <div class="actions">
+      <button type="button" onclick="salvarOuCompartilharPDF()">Salvar / Compartilhar PDF</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="fonteFotoModal" hidden>
+    <div class="modal modal-sm">
+      <div class="modal-head">
+        <h3>Adicionar imagem</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharFonteFoto()">✕</button>
+      </div>
+      <p class="subtitle" style="margin:0 0 16px">Como deseja adicionar a foto?</p>
+      <div class="modal-actions">
+        <button type="button" onclick="usarGaleria()">Galeria</button>
+        <button type="button" onclick="usarCamera()">Câmera</button>
+      </div>
+      <div class="modal-actions" style="margin-top:10px">
+        <button type="button" class="secondary" onclick="fecharFonteFoto()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cameraModal" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Câmera</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharCamera()">✕</button>
+      </div>
+      <div class="camera-box">
+        <video id="cameraVideo" autoplay playsinline muted></video>
+        <canvas id="cameraCanvas" hidden></canvas>
+      </div>
+      <p class="ativacao-status" id="cameraStatus"></p>
+      <div class="modal-actions">
+        <button type="button" onclick="capturarFotoCamera()">Capturar</button>
+        <button type="button" class="secondary" onclick="fecharCamera()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cropFotoModal" hidden>
+    <div class="modal crop-modal">
+      <div class="modal-head">
+        <h3>Ajustar foto</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharCropFoto()">✕</button>
+      </div>
+      <p class="prod-fotos-hint">Arraste para enquadrar e use o zoom. O quadro mostra o que será salvo.</p>
+      <div class="crop-stage" id="cropStage">
+        <img id="cropImg" alt="Ajustar foto" draggable="false">
+        <div class="crop-frame" aria-hidden="true"></div>
+      </div>
+      <div class="field full" style="margin-top:12px">
+        <label for="cropZoom">Zoom</label>
+        <input id="cropZoom" type="range" min="100" max="300" value="100" step="1" oninput="atualizarCropZoom()">
+      </div>
+      <div class="modal-actions">
+        <button type="button" onclick="aplicarCropFoto()">Aplicar corte</button>
+        <button type="button" class="secondary" onclick="usarFotoSemCortar()">Usar inteira</button>
+        <button type="button" class="secondary" onclick="fecharCropFoto()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/formatadores.js"></script>
+  <script src="js/catalogo-storage.js"></script>
+  <script src="js/foto-crop.js"></script>
+  <script src="js/vendor/jspdf.umd.min.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/orcamento.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Orçamento</title>
+  <meta name="theme-color" content="#1d4ed8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
+  <link rel="shortcut icon" href="ico/favicon.ico">
+  <link rel="apple-touch-icon" href="ico/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Orçamento</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <img class="logo-img logo-empresa" alt="Logo da empresa" hidden>
+        <span class="empresa-nome" data-config="empresa"></span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <p class="subtitle">Data: <span id="data"></span></p>
+
+    <div class="grid">
+      <div class="field">
+        <label for="cliente">Cliente</label>
+        <input id="cliente" type="text">
+      </div>
+      <div class="field">
+        <label for="prazo">Prazo de entrega</label>
+        <input id="prazo" type="text" placeholder="Ex.: 3 dias úteis">
+      </div>
+    </div>
+
+    <div class="itens-toolbar">
+      <h3 class="itens-titulo">Itens do orçamento</h3>
+      <button type="button" onclick="abrirSeletorCatalogo()">+ Adicionar do catálogo</button>
+    </div>
+
+    <div id="itensLista" class="itens-lista"></div>
+    <p class="catalogo-vazio" id="itensVazio">Nenhum item ainda. Adicione produtos do catálogo.</p>
+
+    <div class="resultado">
+      <div class="row"><span>Quantidade total de peças</span><b id="qtdOut">0</b></div>
+      <div class="highlight highlight-one">
+        <div class="card-total">
+          <span>Valor total</span>
+          <strong id="valorTotal">R$ 0,00</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="field full" style="margin-top:18px">
+      <label for="obs">Observações</label>
+      <textarea id="obs" style="height:110px" placeholder="Opcional — anotações gerais da empresa para este orçamento"></textarea>
+    </div>
+
+    <hr>
+
+    <div class="contato">
+      <p class="pagamento-titulo"><b>Pagamento</b></p>
+      <p><b>Banco:</b> <span data-config="banco"></span></p>
+      <p><b>Titular da Conta:</b> <span data-config="pixNome"></span></p>
+      <p><b>Chave Pix:</b> <span data-config="pixChave"></span></p>
+      <p><b>Instagram:</b> <a class="ig-link" data-config="instagram"></a></p>
+      <p><b>Responsáveis:</b> <span data-config="responsaveis"></span></p>
+      <p><b>Whatsapp:</b> <span data-config="whatsapp"></span></p>
+    </div>
+
+    <div class="actions">
+      <button type="button" onclick="salvarOuCompartilharPDF()">Salvar / Compartilhar PDF</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="seletorCatalogo" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Adicionar do catálogo</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharSeletorCatalogo()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="prod-fotos-hint">Pesquise e marque uma ou mais peças. O botão só libera após a seleção.</p>
+        <div class="field full">
+          <label for="seletorBusca">Pesquisar</label>
+          <input id="seletorBusca" type="search" autocomplete="off" placeholder="Nome, material, cor…" oninput="renderSeletorCatalogo()">
+        </div>
+        <div class="actions" style="margin:8px 0 0">
+          <button type="button" class="secondary btn-sm" onclick="seletorMarcarTodos(true)">Marcar todos</button>
+          <button type="button" class="secondary btn-sm" onclick="seletorMarcarTodos(false)">Limpar</button>
+        </div>
+        <div class="share-lista" id="seletorLista"></div>
+        <p class="share-contagem" id="seletorContagem">0 selecionadas</p>
+        <p class="catalogo-vazio" id="seletorVazio" hidden>Nenhum produto no catálogo. Cadastre em Catálogo.</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="btnAdicionarSelecionadas" onclick="adicionarSelecionadasCatalogo()" disabled>Adicionar selecionadas</button>
+        <button type="button" class="secondary" onclick="fecharSeletorCatalogo()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/formatadores.js"></script>
+  <script src="js/catalogo-storage.js"></script>
+  <script src="js/vendor/jspdf.umd.min.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/orcamento-manual.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>

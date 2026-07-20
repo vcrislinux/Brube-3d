@@ -1,0 +1,130 @@
+========================================
+ATUALIZACOES DO BRUBE CALC (limite por TEMPO)
+========================================
+
+Cada licenca recebe atualizacoes por 365 dias, contados a partir da
+ATIVACAO (a data que fica gravada na coluna D da planilha de chaves).
+
+- Dentro do prazo  -> o botao "Verificar atualizacoes" oferece a versao nova.
+- Fora do prazo    -> aparece "Seu periodo de atualizacoes expirou. Renove...".
+- A contagem usa a DATA DO SERVIDOR (Apps Script), entao o cliente NAO
+  consegue burlar mudando a data do celular.
+- Na engrenagem o app mostra "Atualizacoes ate: DD/MM/AAAA".
+
+O arquivo APK continua UNICO no Google Drive (voce so substitui):
+  ID do arquivo : 1ZbnZ6ct-ulvrdroq38yw_Ldnxbi-cp_K
+  Link direto   : https://drive.google.com/uc?export=download&id=1ZbnZ6ct-ulvrdroq38yw_Ldnxbi-cp_K
+  Compartilhamento: "Qualquer pessoa com o link" (leitor) - OBRIGATORIO
+
+
+----------------------------------------
+PARA MUDAR O PRAZO (ex.: 6 meses, 2 anos)
+----------------------------------------
+No Apps Script, altere:
+    const DIAS_ATUALIZACAO = 365;   // 180 = 6 meses, 730 = 2 anos
+Depois reimplante (Nova versao).
+
+
+----------------------------------------
+LANCAR UMA VERSAO NOVA (passo a passo)
+----------------------------------------
+
+1) AUMENTAR A VERSAO NO APP
+   Arquivo: js/licenca-config.js
+       const APP_VERSAO = "1.0.1";
+
+2) GERAR O NOVO APK
+   Rode: Gerar-APK.bat
+   Sai na raiz como BrubeCalc-1.0.4.apk (com o numero da versao)
+   e tambem uma copia BrubeCalc.apk (para subir no Drive).
+
+3) SUBSTITUIR O APK NO DRIVE (mantendo o MESMO link/ID)
+   - Botao direito no BrubeCalc.apk antigo no Drive
+   - "Gerenciar versoes" -> "Fazer upload da nova versao"
+   Assim o link/ID continua igual (nao precisa mexer no APK_URL).
+
+4) ATUALIZAR A VERSAO NO APPS SCRIPT
+       const APP_VERSAO_RECENTE = "1.0.1";
+
+5) REIMPLANTAR (nao esqueca!)
+   Implantar -> Gerenciar implantacoes -> lapis -> Versao "Nova versao" -> Implantar
+
+6) TESTAR no celular: engrenagem -> Verificar atualizacoes
+
+
+----------------------------------------
+CODIGO DO APPS SCRIPT (referencia)
+----------------------------------------
+
+No topo do Code.gs:
+   const APP_VERSAO_RECENTE = "1.0.0";
+   const APK_URL = "https://drive.google.com/uc?export=download&id=1ZbnZ6ct-ulvrdroq38yw_Ldnxbi-cp_K";
+   const NOTAS_VERSAO = "";
+   const DIAS_ATUALIZACAO = 365;
+
+Funcoes:
+   function doGet(e) {
+     const p = (e && e.parameter) || {};
+     if (p.check === "update") {
+       return json(infoAtualizacao(p.key));
+     }
+     return json({ ok: true, msg: "Brube Calc - servico de licenca ativo" });
+   }
+
+   function infoAtualizacao(key) {
+     const base = { ok: true, version: APP_VERSAO_RECENTE, url: APK_URL, notas: NOTAS_VERSAO };
+     key = String(key || "").trim().toUpperCase();
+     if (!key) return base;
+     try {
+       const ss = SpreadsheetApp.getActiveSpreadsheet();
+       const sh = ss.getSheetByName(ABA) || ss.getSheets()[0];
+       const data = sh.getDataRange().getValues();
+       for (let i = 1; i < data.length; i++) {
+         if (String(data[i][0] || "").trim().toUpperCase() !== key) continue;
+         const dataBase = data[i][3];
+         if (!dataBase) return base;
+         const inicio = new Date(dataBase);
+         const limite = new Date(inicio.getTime() + DIAS_ATUALIZACAO * 24 * 60 * 60 * 1000);
+         const validade = limite.toISOString();
+         if (new Date().getTime() > limite.getTime()) {
+           return { ok: true, expirado: true, validade: validade };
+         }
+         base.validade = validade;
+         return base;
+       }
+       return base;
+     } catch (err) {
+       return base;
+     }
+   }
+
+Obs.: o arquivo server/apps-script/Code.gs no projeto ja esta com tudo pronto.
+
+
+----------------------------------------
+RENOVAR UM CLIENTE (mais 1 ano)
+----------------------------------------
+Na planilha, na linha da chave do cliente, atualize a coluna D
+(data de ativacao) para a data de HOJE. A contagem reinicia por
+mais DIAS_ATUALIZACAO dias. (Nao precisa reimplantar.)
+
+
+----------------------------------------
+OBSERVACOES
+----------------------------------------
+- APKs ja instalados ANTES desta atualizacao nao enviam a chave na
+  verificacao, entao nao aplicam o limite ate o cliente instalar este
+  novo APK (que passa a enviar a chave).
+- Coluna D da planilha = data de ativacao. NAO apague; e a base da contagem.
+- Instalar por cima nao apaga dados nem a ativacao (mesma assinatura).
+
+
+----------------------------------------
+SOLUCAO DE PROBLEMAS
+----------------------------------------
+- "Nao foi possivel verificar. Confira sua internet."
+  -> Sem internet OU Apps Script nao reimplantado como "Nova versao".
+- Download nao comeca:
+  -> Confira "Qualquer pessoa com o link" no arquivo do Drive.
+- Cliente diz que expirou mas nao deveria:
+  -> Confira a data na coluna D da chave dele na planilha.

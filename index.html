@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc</title>
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Brube Calc">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
+  <link rel="shortcut icon" href="ico/favicon.ico">
+  <link rel="apple-touch-icon" href="ico/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="page-dashboard">
+  <script>
+    try {
+      if (sessionStorage.getItem("brube_skip_splash") === "1") {
+        document.documentElement.classList.add("skip-splash");
+      }
+    } catch (e) {}
+  </script>
+  <div class="container dashboard">
+    <div class="brand">
+      <h2>Brube Calc</h2>
+    </div>
+
+    <div class="dashboard-empresa" id="empresaBar">
+      <img class="logo-img logo-empresa dashboard-logo" alt="Logo da empresa" hidden>
+      <h1 class="empresa-nome dashboard-nome" data-config="empresa"></h1>
+      <p class="dashboard-empresa-vazio" id="dashboardEmpresaVazio" hidden>Configure o nome e a logo da empresa nas Configurações.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <button type="button" class="dashboard-btn dashboard-btn-calc" onclick="location.href='calculadora.html'">
+        <span class="dashboard-btn-bg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2.5" width="14" height="19" rx="2.5"/>
+            <rect x="8" y="5.5" width="8" height="3.5" rx="1"/>
+            <circle cx="9" cy="12.5" r="1.05"/>
+            <circle cx="12" cy="12.5" r="1.05"/>
+            <circle cx="15" cy="12.5" r="1.05"/>
+            <circle cx="9" cy="16" r="1.05"/>
+            <circle cx="12" cy="16" r="1.05"/>
+            <circle cx="15" cy="16" r="1.05"/>
+            <circle cx="9" cy="19.5" r="1.05"/>
+            <circle cx="12" cy="19.5" r="1.05"/>
+            <circle cx="15" cy="19.5" r="1.05"/>
+          </svg>
+        </span>
+        <span class="dashboard-btn-label">Calculadora</span>
+      </button>
+      <button type="button" class="dashboard-btn dashboard-btn-cat" onclick="abrirCatalogo()">
+        <span class="dashboard-btn-bg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8.5 12 4l8 4.5v7L12 20l-8-4.5v-7z"/>
+            <path d="M12 12v8M4 8.5l8 3.5 8-3.5"/>
+          </svg>
+        </span>
+        <span class="dashboard-btn-label">Catálogo</span>
+      </button>
+      <button type="button" class="dashboard-btn dashboard-btn-orc" onclick="location.href='orcamento-manual.html'">
+        <span class="dashboard-btn-bg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 3.5h7.5L19 8v12.5a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 20.5v-15A1.5 1.5 0 0 1 7 3.5z"/>
+            <path d="M14.5 3.5V8H19M8.5 12h7M8.5 15.5h7M8.5 19h4.5"/>
+          </svg>
+        </span>
+        <span class="dashboard-btn-label">Orçamento</span>
+      </button>
+      <button type="button" class="dashboard-btn dashboard-btn-cfg" onclick="abrirConfig()">
+        <span class="dashboard-btn-bg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.07 7.07 0 0 0-1.63-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.8a.5.5 0 0 0-.5.42l-.36 2.54c-.59.24-1.13.55-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.71 8.84a.5.5 0 0 0 .12.64l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L2.83 14.52a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.43.34.68.22l2.39-.96c.5.39 1.04.7 1.63.94l.36 2.54c.05.24.26.42.5.42h3.8c.24 0 .45-.18.5-.42l.36-2.54c.59-.24 1.13-.55 1.63-.94l2.39.96c.25.12.54.02.68-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"/>
+          </svg>
+        </span>
+        <span class="dashboard-btn-label">Configurações</span>
+      </button>
+      <button type="button" class="dashboard-btn dashboard-btn-guia" onclick="abrirGuiaRapido()">
+        <span class="dashboard-btn-bg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4.5h11.5A2.5 2.5 0 0 1 19 7v13.5H7.5A2.5 2.5 0 0 0 5 23"/>
+            <path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H19"/>
+            <path d="M9 9h6.5M9 12.5h6.5M9 16h4"/>
+          </svg>
+        </span>
+        <span class="dashboard-btn-label">Guia rápido</span>
+      </button>
+    </div>
+  </div>
+
+  <footer class="dashboard-footer" id="dashboardFooter"></footer>
+
+  <div class="modal-overlay" id="configModal" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Configurações</h3>
+        <div class="modal-head-actions">
+          <button type="button" class="btn-inicio btn-perfil" onclick="abrirPerfilMenu()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg>
+            <span>Perfil</span>
+          </button>
+          <button type="button" class="btn-inicio" onclick="fecharConfig()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+            <span>Início</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="cfg-tabs" role="tablist" aria-label="Seções das configurações">
+          <button type="button" class="cfg-tab active" role="tab" id="cfgTabContato" aria-selected="true" aria-controls="cfgPaneContato" onclick="trocarAbaConfig('contato')">Dados de Contato</button>
+          <button type="button" class="cfg-tab" role="tab" id="cfgTabCalculo" aria-selected="false" aria-controls="cfgPaneCalculo" onclick="trocarAbaConfig('calculo')">Dados de Cálculo</button>
+        </div>
+
+        <div class="cfg-pane" id="cfgPaneContato" role="tabpanel" aria-labelledby="cfgTabContato">
+          <p class="modal-section">Logo</p>
+          <div class="logo-config">
+            <img id="cfg_logo_preview" class="logo-preview" alt="Prévia da logo" hidden>
+            <div class="logo-config-actions">
+              <label for="cfg_logo_input" class="btn-file">Escolher imagem</label>
+              <input id="cfg_logo_input" type="file" accept="image/*" onchange="importarLogo(this)" hidden>
+              <button type="button" class="secondary" onclick="removerLogo()">Remover</button>
+            </div>
+          </div>
+
+          <p class="modal-section">Dados de contato</p>
+          <div class="grid">
+            <div class="field full">
+              <label for="cfg_empresa">Nome da empresa</label>
+              <input id="cfg_empresa" type="text">
+            </div>
+            <div class="field">
+              <label for="cfg_banco">Banco</label>
+              <input id="cfg_banco" type="text">
+            </div>
+            <div class="field">
+              <label for="cfg_pixNome">Titular da conta</label>
+              <input id="cfg_pixNome" type="text">
+            </div>
+            <div class="field">
+              <label for="cfg_pixChave">Chave PIX</label>
+              <input id="cfg_pixChave" type="text">
+            </div>
+            <div class="field">
+              <label for="cfg_instagram">Instagram</label>
+              <input id="cfg_instagram" type="text">
+            </div>
+            <div class="field full">
+              <label for="cfg_responsaveis">Responsáveis</label>
+              <input id="cfg_responsaveis" type="text">
+            </div>
+            <div class="field full">
+              <label for="cfg_whatsapp">WhatsApp</label>
+              <input id="cfg_whatsapp" type="text">
+            </div>
+          </div>
+        </div>
+
+        <div class="cfg-pane" id="cfgPaneCalculo" role="tabpanel" aria-labelledby="cfgTabCalculo" hidden>
+          <p class="modal-section">Valores padrão do cálculo</p>
+          <div class="grid">
+            <div class="field">
+              <label for="cfg_filamento">Filamento (R$/Kg)</label>
+              <input id="cfg_filamento" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+            </div>
+            <div class="field full">
+              <label for="cfg_impressora">Impressora 3D</label>
+              <div class="imp-select-row">
+                <select id="cfg_impressora" onchange="aplicarImpressoraConfig()"></select>
+                <button type="button" class="imp-fav" id="cfg_imp_fav" title="Favoritar" onclick="toggleFavoritoConfig()">☆</button>
+                <button type="button" class="secondary" id="cfg_imp_del" hidden onclick="removerImpressoraConfig()">Excluir</button>
+              </div>
+              <p class="field-hint">Equivale à potência da impressora 3D — selecione para preencher Potência; use ★ para favoritar.</p>
+              <div class="imp-add">
+                <input id="cfg_imp_nome" type="text" placeholder="Nova impressora (nome)">
+                <input id="cfg_imp_watts" type="number" inputmode="decimal" min="0" step="1" placeholder="W">
+                <button type="button" class="secondary" onclick="adicionarImpressoraForm()">Adicionar</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="cfg_potencia">Potência (W)</label>
+              <input id="cfg_potencia" type="number" inputmode="decimal" min="0" step="1">
+            </div>
+            <div class="field">
+              <label for="cfg_kwh">Preço kWh (R$)</label>
+              <input id="cfg_kwh" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+            </div>
+            <div class="field">
+              <label for="cfg_desgaste">Desgaste (R$/h)</label>
+              <input id="cfg_desgaste" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+            </div>
+            <div class="field">
+              <label for="cfg_argolas">Argolas chaveiro (R$)</label>
+              <input id="cfg_argolas" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+            </div>
+            <div class="field">
+              <label for="cfg_valorEmbalagem">Embalagem (R$)</label>
+              <input id="cfg_valorEmbalagem" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+            </div>
+          </div>
+        </div>
+
+        <p class="modal-section">Aplicativo</p>
+        <div class="app-info">
+          <span>Versão <b id="appVersao">1.0.0</b></span>
+          <button type="button" class="secondary" id="btnAtualizar" onclick="verificarAtualizacoes()">Verificar atualizações</button>
+        </div>
+        <p class="app-validade">Atualizações até: <b id="appValidade">—</b></p>
+        <p class="ativacao-status" id="updStatus"></p>
+
+        <div class="cfg-contato-box cfg-ajuda-box">
+          <button type="button" class="secondary cfg-contato-btn" onclick="abrirManuais()">Manual</button>
+          <button type="button" class="secondary cfg-contato-btn" onclick="abrirContatoDev()">Contato</button>
+        </div>
+        <input id="importPerfil" type="file" accept="application/json,.json" onchange="importarPerfilArquivo(this)" hidden>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" onclick="salvarConfigForm()">Salvar</button>
+        <button type="button" class="secondary" onclick="restaurarConfigForm()">Restaurar padrões</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="manuaisModal" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Manual</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharManuais()">✕</button>
+      </div>
+      <p class="prod-fotos-hint">Escolha um guia. Os manuais ilustrados mostram as telas do celular.</p>
+      <div class="manuais-lista" id="manuaisLista"></div>
+      <div class="modal-actions">
+        <button type="button" class="secondary" onclick="fecharManuais()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="manualTextoModal" hidden>
+    <div class="modal modal-manual">
+      <div class="modal-head">
+        <h3 id="manualTextoTitulo">Manual</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharManualTexto()">✕</button>
+      </div>
+      <article class="manual-texto-body" id="manualTextoBody"></article>
+      <div class="modal-actions">
+        <button type="button" class="secondary" onclick="fecharManualTexto()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="perfilModal" hidden>
+    <div class="modal modal-sm">
+      <div class="modal-head">
+        <h3>Perfil</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharPerfilMenu()">✕</button>
+      </div>
+      <p class="prod-fotos-hint">Backup completo: configurações, logo, impressoras, calculadora e catálogo.</p>
+      <div class="perfil-acoes">
+        <button type="button" onclick="acaoPerfil('exportar')">Exportar perfil</button>
+        <button type="button" class="secondary" onclick="acaoPerfil('importar')">Importar perfil</button>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="secondary" onclick="fecharPerfilMenu()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="contatoDevModal" hidden>
+    <div class="modal modal-sm">
+      <div class="modal-head">
+        <h3>Contato</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharContatoDev()">✕</button>
+      </div>
+      <div class="contato-dev-body">
+        <p class="contato-dev-nome">Cristiano Vieira</p>
+        <p><span>WhatsApp:</span> <a href="https://wa.me/5561991719510" target="_blank" rel="noopener noreferrer">61 991719510</a></p>
+        <p><span>E-mail:</span> <a href="mailto:vcrislinux@gmail.com">vcrislinux@gmail.com</a></p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="secondary" onclick="fecharContatoDev()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="splash" id="appSplash" hidden>
+    <div class="splash-inner">
+      <img class="splash-logo" src="img/icon.png" alt="Brube Calc">
+    </div>
+    <p class="splash-credit" id="splashCredit"></p>
+  </div>
+
+  <div class="ativacao-gate" id="ativacaoGate" hidden>
+    <div class="ativacao-card">
+      <img class="logo-img" src="img/icon.png" alt="Brube Calc" data-fixed="true">
+      <h2>Ativar o Brube Calc</h2>
+      <p class="subtitle">Digite sua chave de acesso e entre com sua conta Google para ativar o aplicativo.</p>
+      <div class="field full">
+        <label for="ativChave">Chave de acesso</label>
+        <input id="ativChave" type="text" autocomplete="off" autocapitalize="characters" placeholder="BRUBE-XXXX-XXXX-XXXX-XXXX">
+      </div>
+      <button type="button" id="ativBtn">Entrar com Google e ativar</button>
+      <p class="ativacao-status" id="ativStatus"></p>
+    </div>
+  </div>
+
+  <script src="js/licenca-config.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/formatadores.js"></script>
+  <script src="js/impressoras.js"></script>
+  <script src="js/catalogo-storage.js"></script>
+  <script src="js/perfil.js"></script>
+  <script src="js/manuais-config.js"></script>
+  <script src="js/manuais.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/splash.js"></script>
+  <script src="js/ativacao.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/voltar-android.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Configurações e Perfil</title>
+  <meta name="theme-color" content="#2563eb">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/manual-ilustrado.css">
+</head>
+
+<body>
+  <div class="container manual-ilustrado">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Configurações</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <span class="empresa-nome">Manual ilustrado</span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+
+    <header class="manual-ilust-hero">
+      <p class="manual-ilust-kicker">Primeiro uso e backup</p>
+      <h1>Configurações e botão Perfil</h1>
+      <p>Configure logo, dados da empresa e valores de cálculo. Depois use <strong>Perfil → Exportar perfil</strong> para guardar tudo num arquivo de backup.</p>
+    </header>
+
+    <section class="manual-ilust-sec">
+      <h2><span>1</span> Abrir Configurações</h2>
+      <p>Na tela inicial, toque em <strong>Configurações</strong> (ícone de engrenagem). É por aqui que você cadastra a empresa e acessa o backup do Perfil.</p>
+      <figure>
+        <img src="img/manual-config/01-inicio-configuracoes.jpeg" alt="Tela inicial com botão Configurações" loading="lazy">
+        <figcaption>Início → Configurações</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>2</span> Tela de Configurações</h2>
+      <p>No topo ficam dois botões: <strong>Perfil</strong> (à esquerda) e <strong>Início</strong> (à direita).</p>
+      <p>Na seção <strong>Logo</strong>, toque em <strong>Escolher imagem</strong> para colocar a marca da sua empresa (aparece nos orçamentos em PDF).</p>
+      <p>Em <strong>Dados de contato</strong>, preencha nome da empresa, banco, PIX, Instagram, responsáveis e WhatsApp. Esses dados entram nos documentos gerados pelo app.</p>
+      <figure>
+        <img src="img/manual-config/02-config-logo-contato.jpeg" alt="Configurações com Logo, contato e botão Perfil" loading="lazy">
+        <figcaption>Logo, dados de contato e botão Perfil no topo</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>3</span> Exemplo preenchido</h2>
+      <p>Com a logo e os campos preenchidos, a tela fica assim. Você pode trocar a imagem a qualquer momento ou usar <strong>Remover</strong> para apagar a logo.</p>
+      <figure>
+        <img src="img/manual-config/03-config-preenchido.jpeg" alt="Configurações com logo e dados de exemplo" loading="lazy">
+        <figcaption>Logo e dados da empresa preenchidos</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>4</span> Valores padrão do cálculo</h2>
+      <p>Role a tela até <strong>Valores padrão do cálculo</strong>. Informe filamento (R$/Kg), escolha ou cadastre a impressora 3D, potência (W), preço do kWh e desgaste (R$/h).</p>
+      <p>Esses valores servem de base na Calculadora. Você ainda pode alterar números em cada cálculo, se precisar.</p>
+      <figure>
+        <img src="img/manual-config/04-valores-calculo.jpeg" alt="Seção Valores padrão do cálculo" loading="lazy">
+        <figcaption>Filamento, impressora, potência e energia</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>5</span> Salvar as configurações</h2>
+      <p>No final da tela há a seção <strong>Aplicativo</strong> (versão e atualizações). Role até o fim e toque em <strong>Salvar</strong> para gravar tudo no aparelho.</p>
+      <p><strong>Restaurar padrões</strong> volta os valores de cálculo para o padrão do app (não apaga o catálogo).</p>
+      <figure>
+        <img src="img/manual-config/05-salvar-config.jpeg" alt="Rodapé das Configurações com Salvar" loading="lazy">
+        <figcaption>Salvar para gravar as alterações</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>6</span> Botão Perfil — para que serve</h2>
+      <p>O botão <strong>Perfil</strong> fica no canto superior direito da tela Configurações (à esquerda de Início).</p>
+      <p>Ele <strong>não</strong> edita nome ou foto de usuário. Ele abre o menu de <strong>backup completo</strong> do que você já cadastrou no Brube Calc.</p>
+      <p>Use o Perfil quando quiser:</p>
+      <ul class="manual-ilust-lista">
+        <li>guardar uma cópia de segurança no celular ou no Google Drive;</li>
+        <li>passar seus dados para outro aparelho;</li>
+        <li>recuperar configurações e catálogo depois de reinstalar o app.</li>
+      </ul>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>7</span> Exportar perfil (backup)</h2>
+      <p>Toque em <strong>Perfil</strong> e depois em <strong>Exportar perfil</strong> (botão azul).</p>
+      <p>O app gera um arquivo <strong>brube-perfil-….json</strong> com um backup completo, incluindo:</p>
+      <ul class="manual-ilust-lista">
+        <li>configurações (empresa, PIX, WhatsApp, etc.);</li>
+        <li>logo da empresa;</li>
+        <li>impressoras cadastradas;</li>
+        <li>campos da calculadora;</li>
+        <li>todo o catálogo de produtos.</li>
+      </ul>
+      <p>No Android, o celular abre a tela de <strong>compartilhar</strong>: salve no Drive, envie por WhatsApp ou guarde numa pasta segura. Guarde esse arquivo em local que você consiga achar depois.</p>
+      <figure>
+        <img src="img/manual-config/06-perfil-exportar.jpeg" alt="Modal Perfil com Exportar perfil e Importar perfil" loading="lazy">
+        <figcaption>Perfil → Exportar perfil (backup completo)</figcaption>
+      </figure>
+    </section>
+
+    <aside class="manual-ilust-nota">
+      <strong>Importar perfil:</strong> no mesmo menu, <strong>Importar perfil</strong> lê um arquivo <code>brube-perfil-….json</code> gerado antes. Isso <strong>substitui</strong> as configurações, impressoras, calculadora e o catálogo atuais neste aparelho. Só importe se tiver certeza de que o arquivo é o backup certo.
+    </aside>
+
+    <section class="manual-ilust-sec">
+      <h2><span>8</span> Como fica depois de salvar</h2>
+      <p>Ao tocar em <strong>Salvar</strong> e voltar ao Início, a tela principal mostra a <strong>logo</strong> e o <strong>nome da empresa</strong> que você cadastrou — em vez da mensagem pedindo para configurar.</p>
+      <figure>
+        <img src="img/manual-config/07-inicio-apos-salvar.png" alt="Tela inicial com logo e nome da empresa após salvar" loading="lazy">
+        <figcaption>Início com logo e nome da empresa</figcaption>
+      </figure>
+    </section>
+
+    <aside class="manual-ilust-nota">
+      <strong>Dica:</strong> depois de preencher logo, contatos, impressoras e catálogo, exporte o perfil. Assim você não perde o trabalho se trocar de celular ou reinstalar o Brube Calc.
+    </aside>
+
+    <div class="actions" style="margin-top:20px">
+      <button type="button" class="secondary" onclick="history.length > 1 ? history.back() : irInicio()">Voltar</button>
+      <button type="button" onclick="irInicio()">Início</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>

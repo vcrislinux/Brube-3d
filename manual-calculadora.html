@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Calculadora</title>
+  <meta name="theme-color" content="#2563eb">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/manual-ilustrado.css">
+</head>
+
+<body>
+  <div class="container manual-ilustrado">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Calculadora</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <span class="empresa-nome">Manual ilustrado</span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+
+    <header class="manual-ilust-hero">
+      <p class="manual-ilust-kicker">Cálculo e orçamento</p>
+      <h1>Como usar a Calculadora</h1>
+      <p>Preencha o cálculo, gere o orçamento com foto (opcional), envie o PDF e, se quiser, salve a peça no catálogo.</p>
+    </header>
+
+    <section class="manual-ilust-sec">
+      <h2><span>1</span> Abrir a Calculadora</h2>
+      <p>Na tela inicial, toque em <strong>Calculadora</strong>.</p>
+      <figure>
+        <img src="img/manual-calculadora/01-inicio-calculadora.jpeg" alt="Tela inicial com botão Calculadora" loading="lazy">
+        <figcaption>Início → Calculadora</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>2</span> Preencher os dados</h2>
+      <p>Informe filamento (R$/Kg), impressora favorita (as marcadas com ★ nas Configurações), potência, preço do kWh, <strong>gramas</strong>, <strong>tempo</strong> (HH:MM), lucro (%) e quantidade de peças.</p>
+      <figure>
+        <img src="img/manual-calculadora/02-preencher-dados.jpeg" alt="Formulário da Calculadora preenchido" loading="lazy">
+        <figcaption>Campos principais do cálculo</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>3</span> Extras (opcional) e Calcular</h2>
+      <p>Em <strong>Extras</strong> você pode somar desgaste, taxa de falha, mão de obra e embalagem. Deixe zero se não quiser afetar o cálculo.</p>
+      <p>Toque em <strong>Calcular</strong> para ver os custos. Depois use <strong>Gerar Orçamento</strong> para montar o PDF.</p>
+      <figure>
+        <img src="img/manual-calculadora/03-extras-calcular.jpeg" alt="Extras e botões Calcular e Gerar Orçamento" loading="lazy">
+        <figcaption>Extras → Calcular → Gerar Orçamento</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>4</span> Resultado do cálculo</h2>
+      <p>Aparecem filamento, energia, extras, lucro, custo total e custo por peça. Em destaque ficam o <strong>valor por peça</strong> e a <strong>venda total</strong>.</p>
+      <figure>
+        <img src="img/manual-calculadora/04-resultado-calculo.jpeg" alt="Resultado do cálculo com valores" loading="lazy">
+        <figcaption>Resumo dos valores calculados</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>5</span> Tela de Orçamento</h2>
+      <p>Após <strong>Gerar Orçamento</strong>, preencha cliente, nome da peça e material/cor. Os valores já vêm do cálculo.</p>
+      <p>Em <strong>Imagem da peça</strong>, toque em <strong>Adicionar imagem</strong> e escolha <strong>Galeria</strong> ou <strong>Câmera</strong>.</p>
+      <figure>
+        <img src="img/manual-calculadora/05-tela-orcamento.jpeg" alt="Tela Orçamento com campos e imagem" loading="lazy">
+        <figcaption>Orçamento gerado a partir da Calculadora</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>6</span> Dados do cliente e da peça</h2>
+      <p>Exemplo: cliente, nome da peça e cor preenchidos. A foto é opcional, mas deixa o PDF e o catálogo mais claros.</p>
+      <figure>
+        <img src="img/manual-calculadora/06-orcamento-preenchido.jpeg" alt="Orçamento com cliente e peça preenchidos" loading="lazy">
+        <figcaption>Cliente, peça e material/cor</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>7</span> Ajustar (cortar) a foto</h2>
+      <p>Depois de escolher a imagem, abre <strong>Ajustar foto</strong>: arraste para enquadrar, use o zoom e toque em <strong>Aplicar corte</strong>. Se preferir a foto sem cortar, use <strong>Usar inteira</strong>.</p>
+      <figure>
+        <img src="img/manual-calculadora/07-ajustar-foto.jpeg" alt="Tela Ajustar foto com zoom e corte" loading="lazy">
+        <figcaption>Enquadrar a imagem da peça</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>8</span> Adicionar ao catálogo e PDF</h2>
+      <p>Marque <strong>Adicionar este item ao catálogo</strong> se quiser guardar a peça (nome, peso, tempo, custo, venda e imagem) para reutilizar depois.</p>
+      <p>Você pode tocar em <strong>Adicionar ao catálogo</strong> agora, ou gerar o PDF com a opção marcada — o item também é salvo.</p>
+      <p>Em seguida toque em <strong>Salvar / Compartilhar PDF</strong>.</p>
+      <figure>
+        <img src="img/manual-calculadora/08-adicionar-catalogo-pdf.jpeg" alt="Opção catálogo e botão Salvar PDF" loading="lazy">
+        <figcaption>Catálogo + Salvar / Compartilhar PDF</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>9</span> PDF do orçamento</h2>
+      <p>O PDF traz logo, empresa, cliente, peça, material, quantidade, foto (se houver), valores, observações e dados de pagamento. No celular você pode enviar por WhatsApp, Drive etc.</p>
+      <figure>
+        <img src="img/manual-calculadora/09-pdf-compartilhar.jpeg" alt="PDF do orçamento pronto para compartilhar" loading="lazy">
+        <figcaption>Orçamento em PDF</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>10</span> Peça no catálogo</h2>
+      <p>Se marcou adicionar ao catálogo, a peça aparece em <strong>Catálogo</strong> com foto, peso, tempo e preço — pronta para gerar novos orçamentos depois.</p>
+      <figure>
+        <img src="img/manual-calculadora/10-catalogo-item.jpeg" alt="Catálogo com o produto Copo cadastrado" loading="lazy">
+        <figcaption>Item salvo no Meu Catálogo</figcaption>
+      </figure>
+    </section>
+
+    <aside class="manual-ilust-nota">
+      <strong>Dica:</strong> sempre toque em <strong>Calcular</strong> antes de <strong>Gerar Orçamento</strong>, para o PDF usar os valores atualizados. O nome da peça é obrigatório se for salvar no catálogo.
+    </aside>
+
+    <div class="actions" style="margin-top:20px">
+      <button type="button" class="secondary" onclick="history.length > 1 ? history.back() : irInicio()">Voltar</button>
+      <button type="button" onclick="irInicio()">Início</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>

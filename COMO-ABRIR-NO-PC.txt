@@ -1,0 +1,31 @@
+========================================
+BRUBE CALC - COMO USAR NO PC
+========================================
+
+1) Extraia (descompacte) esta pasta em qualquer lugar do computador.
+   Ex.: Area de Trabalho.
+
+2) Abra o arquivo "index.html" com um navegador
+   (Google Chrome ou Microsoft Edge recomendados).
+   - Basta dar dois cliques em index.html, OU
+   - Clique com o botao direito -> Abrir com -> Chrome/Edge.
+
+3) Na primeira vez, clique na engrenagem (canto superior direito)
+   e preencha seus dados:
+   - Empresa, Banco, Titular da conta, Chave Pix, Instagram,
+     Responsaveis, WhatsApp.
+   - Se quiser, importe a sua LOGO.
+   Depois clique em "Salvar". Esses dados ficam guardados no navegador.
+
+4) Para gerar orcamento:
+   - Use a calculadora na tela inicial, OU
+   - Clique em "Orcamento Manual" para digitar os valores.
+   - No orcamento, clique em "Salvar / Compartilhar PDF".
+     No PC, o PDF sera BAIXADO (pasta Downloads).
+
+DICAS:
+- Sempre abra pelo MESMO navegador para manter seus dados e sua logo.
+- Da para "instalar" como aplicativo: no Chrome/Edge, abra o index.html
+  por um endereco (http) e use o botao "Instalar". (Opcional.)
+
+OBS: nesta versao de PC nao e necessaria chave de acesso.

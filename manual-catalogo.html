@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Catálogo</title>
+  <meta name="theme-color" content="#2563eb">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/manual-ilustrado.css">
+</head>
+
+<body>
+  <div class="container manual-ilustrado">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Catálogo</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <span class="empresa-nome">Manual ilustrado</span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+
+    <header class="manual-ilust-hero">
+      <p class="manual-ilust-kicker">Peças salvas no aparelho</p>
+      <h1>Como usar o Catálogo</h1>
+      <p>Cadastre peças com foto, pesquise, compartilhe o catálogo (total ou parcial) e gere orçamento a partir de um item.</p>
+    </header>
+
+    <section class="manual-ilust-sec">
+      <h2><span>1</span> Abrir o Catálogo</h2>
+      <p>Na tela inicial, toque em <strong>Catálogo</strong>.</p>
+      <figure>
+        <img src="img/manual-catalogo/01-inicio-catalogo.jpeg" alt="Tela inicial com botão Catálogo" loading="lazy">
+        <figcaption>Início → Catálogo</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>2</span> Novo produto</h2>
+      <p>Toque em <strong>+ Novo produto</strong>. Você pode adicionar até <strong>3 fotos</strong> por peça. Toque em <strong>Adicionar imagem</strong> e escolha Galeria ou Câmera.</p>
+      <figure>
+        <img src="img/manual-catalogo/02-novo-produto.jpeg" alt="Formulário Novo produto vazio" loading="lazy">
+        <figcaption>Formulário de novo produto</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>3</span> Ajustar a foto</h2>
+      <p>Na tela <strong>Ajustar foto</strong>, arraste para enquadrar, use o zoom e toque em <strong>Aplicar corte</strong>. Se quiser a imagem sem cortar, use <strong>Usar inteira</strong>.</p>
+      <figure>
+        <img src="img/manual-catalogo/03-ajustar-foto.jpeg" alt="Ferramenta de corte de foto" loading="lazy">
+        <figcaption>Enquadrar a imagem da peça</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>4</span> Preencher os dados</h2>
+      <p>Informe nome, material, cores, peso (g) e tempo de impressão. O <strong>valor de custo</strong> pode ser calculado automaticamente com os padrões das Configurações (engrenagem).</p>
+      <figure>
+        <img src="img/manual-catalogo/04-produto-preenchido.jpeg" alt="Produto com foto e dados preenchidos" loading="lazy">
+        <figcaption>Foto e dados técnicos</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>5</span> Venda, detalhes e Salvar</h2>
+      <p>Preencha o <strong>valor de venda</strong> e, se quiser, detalhes da peça. Toque em <strong>Salvar</strong>.</p>
+      <figure>
+        <img src="img/manual-catalogo/05-salvar-produto.jpeg" alt="Valor de venda, detalhes e botão Salvar" loading="lazy">
+        <figcaption>Finalizar e salvar o produto</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>6</span> Peça na lista</h2>
+      <p>O produto aparece no <strong>Meu Catálogo</strong> com foto, peso, tempo, material/cor e preço. Em cada card você pode <strong>Gerar orçamento</strong>, <strong>Editar</strong> ou <strong>Excluir</strong>.</p>
+      <figure>
+        <img src="img/manual-catalogo/06-lista-catalogo.jpeg" alt="Lista do catálogo com produto cadastrado" loading="lazy">
+        <figcaption>Produto salvo na lista</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>7</span> Menu Arquivo</h2>
+      <p>Em <strong>Arquivo</strong> você gerencia o arquivo do catálogo neste aparelho:</p>
+      <ul class="manual-ilust-lista">
+        <li><strong>Salvar catálogo</strong> — grava/atualiza o arquivo local;</li>
+        <li><strong>Exportar catálogo</strong> — gera um JSON para backup ou outro celular;</li>
+        <li><strong>Importar catálogo</strong> — traz um JSON salvo antes.</li>
+      </ul>
+      <figure>
+        <img src="img/manual-catalogo/07-menu-arquivo.jpeg" alt="Menu Arquivo aberto no catálogo" loading="lazy">
+        <figcaption>Arquivo → Salvar / Exportar / Importar</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>8</span> Compartilhar catálogo</h2>
+      <p>Toque em <strong>Compartilhar</strong>. O envio leva só as peças (foto e dados) — sem totais de orçamento nem pagamento.</p>
+      <p>Escolha <strong>Catálogo total</strong> (todas as peças) ou <strong>Catálogo parcial</strong> (você seleciona quais enviar).</p>
+      <figure>
+        <img src="img/manual-catalogo/08-compartilhar-catalogo.jpeg" alt="Modal Compartilhar catálogo total ou parcial" loading="lazy">
+        <figcaption>Total ou parcial</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>9</span> PDF do catálogo total</h2>
+      <p>Com <strong>Catálogo total</strong>, o app gera um PDF com logo, empresa, lista de peças, fotos e preços — pronto para enviar (WhatsApp, Drive etc.).</p>
+      <figure>
+        <img src="img/manual-catalogo/09-pdf-catalogo-total.jpeg" alt="PDF do catálogo completo" loading="lazy">
+        <figcaption>Catálogo de peças (todas)</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>10</span> Selecionar peças (parcial)</h2>
+      <p>Em <strong>Catálogo parcial</strong>, marque as peças desejadas (ou use Marcar todos / Limpar). O botão <strong>Enviar selecionadas</strong> só libera com pelo menos uma marcada.</p>
+      <figure>
+        <img src="img/manual-catalogo/10-selecionar-pecas.jpeg" alt="Tela Selecionar peças do catálogo parcial" loading="lazy">
+        <figcaption>Seleção para envio parcial</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>11</span> PDF do catálogo parcial</h2>
+      <p>Só as peças escolhidas entram no PDF — útil para enviar só o que o cliente pediu.</p>
+      <figure>
+        <img src="img/manual-catalogo/11-pdf-catalogo-parcial.jpeg" alt="PDF do catálogo com peças selecionadas" loading="lazy">
+        <figcaption>Catálogo parcial em PDF</figcaption>
+      </figure>
+    </section>
+
+    <section class="manual-ilust-sec">
+      <h2><span>12</span> Pesquisar</h2>
+      <p>Use o campo <strong>Pesquisar</strong> para achar por nome, material ou cor. A lista filtra na hora.</p>
+      <figure>
+        <img src="img/manual-catalogo/12-pesquisar-nome.jpeg" alt="Pesquisa por nome no catálogo" loading="lazy">
+        <figcaption>Busca por nome (ex.: So → Sonic)</figcaption>
+      </figure>
+      <figure style="margin-top:14px">
+        <img src="img/manual-catalogo/13-pesquisar-cor.jpeg" alt="Pesquisa por cor no catálogo" loading="lazy">
+        <figcaption>Busca por cor (ex.: Azul)</figcaption>
+      </figure>
+    </section>
+
+    <aside class="manual-ilust-nota">
+      <strong>Dica:</strong> os produtos ficam neste aparelho. Para não perder o catálogo, use <strong>Arquivo → Exportar</strong> ou o backup completo em <strong>Configurações → Perfil → Exportar perfil</strong>.
+    </aside>
+
+    <div class="actions" style="margin-top:20px">
+      <button type="button" class="secondary" onclick="history.length > 1 ? history.back() : irInicio()">Voltar</button>
+      <button type="button" onclick="irInicio()">Início</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>

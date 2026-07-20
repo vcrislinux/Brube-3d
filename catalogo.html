@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Meu Catálogo</title>
+  <meta name="theme-color" content="#1d4ed8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
+  <link rel="shortcut icon" href="ico/favicon.ico">
+  <link rel="apple-touch-icon" href="ico/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Meu Catálogo</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <img class="logo-img logo-empresa" alt="Logo da empresa" hidden>
+        <span class="empresa-nome" data-config="empresa"></span>
+      </div>
+      <div class="header-actions">
+        <div class="menu-arquivo" id="menuArquivo">
+          <button type="button" class="secondary menu-arquivo-btn" id="btnMenuArquivo" aria-expanded="false" aria-haspopup="true" onclick="toggleMenuArquivo(event)">Arquivo ▾</button>
+          <div class="menu-arquivo-lista" id="menuArquivoLista" hidden role="menu">
+            <button type="button" role="menuitem" onclick="acaoMenuArquivo('salvar')">Salvar catálogo</button>
+            <button type="button" role="menuitem" onclick="acaoMenuArquivo('exportar')">Exportar catálogo</button>
+            <button type="button" role="menuitem" onclick="acaoMenuArquivo('importar')">Importar catálogo</button>
+          </div>
+        </div>
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+    <input id="importCatalogo" type="file" accept="application/json,.json" onchange="importarCatalogoArquivo(this)" hidden>
+
+    <div class="catalogo-toolbar">
+      <button type="button" class="secondary btn-sm" onclick="abrirCompartilharCatalogo()">Compartilhar</button>
+      <button type="button" class="btn-sm" onclick="novoProduto()">+ Novo produto</button>
+    </div>
+
+    <div class="field full catalogo-busca">
+      <label for="catalogoBusca">Pesquisar</label>
+      <input id="catalogoBusca" type="search" autocomplete="off" placeholder="Nome, material, cor…" oninput="renderCatalogo()">
+    </div>
+    <p class="prod-fotos-hint" id="catalogoSaveHint">Os produtos ficam salvos neste aparelho. Em Arquivo você pode salvar, exportar ou importar o catálogo.</p>
+
+    <div id="catalogoLista" class="catalogo-lista"></div>
+    <p class="catalogo-vazio" id="catalogoVazio" hidden>Nenhum produto cadastrado ainda. Toque em “+ Novo produto”.</p>
+  </div>
+
+  <div class="modal-overlay" id="produtoModal" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="produtoModalTitulo">Novo produto</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharProduto()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="prod_id">
+
+        <div class="prod-foto-box">
+          <div class="prod-fotos-grid" id="prod_fotos_grid"></div>
+          <p class="prod-fotos-hint" id="prod_fotos_hint">Até 3 fotos</p>
+          <div class="prod-foto-actions" id="prod_foto_actions">
+            <button type="button" class="btn-file" id="btnAddFoto" onclick="escolherFonteFoto()">Adicionar imagem</button>
+            <input id="prod_foto_galeria" type="file" accept="image/*" onchange="importarFotoProduto(this)" hidden>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field full">
+            <label for="prod_nome">Nome</label>
+            <input id="prod_nome" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="prod_material">Material</label>
+            <input id="prod_material" type="text" placeholder="Ex.: PLA">
+          </div>
+          <div class="field">
+            <label for="prod_cores">Cores</label>
+            <input id="prod_cores" type="text" placeholder="Ex.: Preto / Branco">
+          </div>
+          <div class="field">
+            <label for="prod_peso">Peso (g)</label>
+            <input id="prod_peso" type="number" inputmode="decimal" min="0" step="0.1" oninput="calcularCustoProduto()">
+          </div>
+          <div class="field">
+            <label for="prod_horas">Tempo de impressão</label>
+            <input id="prod_horas" type="text" inputmode="numeric" data-formato="tempo" placeholder="00:00">
+          </div>
+          <div class="field">
+            <label for="prod_custo">Valor de custo (R$)</label>
+            <input id="prod_custo" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+            <p class="field-hint">Calculado automaticamente com os padrões da engrenagem.</p>
+          </div>
+          <div class="field">
+            <label for="prod_venda">Valor de venda (R$)</label>
+            <input id="prod_venda" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+          </div>
+          <div class="field full">
+            <label for="prod_detalhes">Detalhes</label>
+            <textarea id="prod_detalhes" style="height:100px"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" onclick="salvarProduto()">Salvar</button>
+        <button type="button" class="secondary" onclick="fecharProduto()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="shareCatalogoModal" hidden>
+    <div class="modal modal-sm">
+      <div class="modal-head">
+        <h3>Compartilhar catálogo</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharCompartilharCatalogo()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="prod-fotos-hint">Envia só as peças (foto e dados). Sem orçamento, totais ou pagamento.</p>
+        <div class="share-modo" id="shareModoBox">
+          <button type="button" onclick="compartilharCatalogoTotal()">Catálogo total</button>
+          <button type="button" class="secondary" onclick="abrirShareParcial()">Catálogo parcial</button>
+        </div>
+      </div>
+      <div class="modal-actions" id="shareAcoesInicio">
+        <button type="button" class="secondary" onclick="fecharCompartilharCatalogo()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="shareSelecaoModal" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Selecionar peças</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharShareSelecao()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="prod-fotos-hint">Marque uma ou mais peças. O envio só libera depois da seleção.</p>
+        <div class="field full">
+          <label for="shareBusca">Pesquisar</label>
+          <input id="shareBusca" type="search" autocomplete="off" placeholder="Nome, material, cor…" oninput="renderShareLista()">
+        </div>
+        <div class="actions" style="margin:8px 0 0">
+          <button type="button" class="secondary btn-sm" onclick="shareMarcarTodos(true)">Marcar todos</button>
+          <button type="button" class="secondary btn-sm" onclick="shareMarcarTodos(false)">Limpar</button>
+        </div>
+        <div class="share-lista" id="shareLista"></div>
+        <p class="share-contagem" id="shareContagem">0 selecionadas</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="btnEnviarSelecionadas" onclick="compartilharCatalogoParcial()" disabled>Enviar selecionadas</button>
+        <button type="button" class="secondary" onclick="fecharShareSelecao()">Voltar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="fonteFotoModal" hidden>
+    <div class="modal modal-sm">
+      <div class="modal-head">
+        <h3>Adicionar imagem</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharFonteFoto()">✕</button>
+      </div>
+      <p class="subtitle" style="margin:0 0 16px">Como deseja adicionar a foto?</p>
+      <div class="modal-actions">
+        <button type="button" onclick="usarGaleria()">Galeria</button>
+        <button type="button" onclick="usarCamera()">Câmera</button>
+      </div>
+      <div class="modal-actions" style="margin-top:10px">
+        <button type="button" class="secondary" onclick="fecharFonteFoto()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cameraModal" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h3>Câmera</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharCamera()">✕</button>
+      </div>
+      <div class="camera-box">
+        <video id="cameraVideo" autoplay playsinline muted></video>
+        <canvas id="cameraCanvas" hidden></canvas>
+      </div>
+      <p class="ativacao-status" id="cameraStatus"></p>
+      <div class="modal-actions">
+        <button type="button" onclick="capturarFotoCamera()">Capturar</button>
+        <button type="button" class="secondary" onclick="fecharCamera()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="cropFotoModal" hidden>
+    <div class="modal crop-modal">
+      <div class="modal-head">
+        <h3>Ajustar foto</h3>
+        <button type="button" class="modal-close" aria-label="Fechar" onclick="fecharCropFoto()">✕</button>
+      </div>
+      <p class="prod-fotos-hint">Arraste para enquadrar e use o zoom. O quadro mostra o que será salvo.</p>
+      <div class="crop-stage" id="cropStage">
+        <img id="cropImg" alt="Ajustar foto" draggable="false">
+        <div class="crop-frame" aria-hidden="true"></div>
+      </div>
+      <div class="field full" style="margin-top:12px">
+        <label for="cropZoom">Zoom</label>
+        <input id="cropZoom" type="range" min="100" max="300" value="100" step="1" oninput="atualizarCropZoom()">
+      </div>
+      <div class="modal-actions">
+        <button type="button" onclick="aplicarCropFoto()">Aplicar corte</button>
+        <button type="button" class="secondary" onclick="usarFotoSemCortar()">Usar inteira</button>
+        <button type="button" class="secondary" onclick="fecharCropFoto()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay galeria-overlay" id="galeriaModal" hidden>
+    <div class="galeria-modal" role="dialog" aria-modal="true" aria-label="Fotos do produto">
+      <button type="button" class="galeria-fechar" aria-label="Fechar" onclick="fecharGaleria()">✕</button>
+      <button type="button" class="galeria-nav galeria-prev" id="galeriaPrev" aria-label="Anterior" onclick="galeriaAnterior()">‹</button>
+      <img id="galeriaImg" class="galeria-img" alt="Foto do produto">
+      <button type="button" class="galeria-nav galeria-next" id="galeriaNext" aria-label="Próxima" onclick="galeriaProxima()">›</button>
+      <p class="galeria-info" id="galeriaInfo"></p>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/formatadores.js"></script>
+  <script src="js/catalogo-storage.js"></script>
+  <script src="js/foto-crop.js"></script>
+  <script src="js/vendor/jspdf.umd.min.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/catalogo.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>

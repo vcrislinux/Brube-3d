@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brube Calc - Calculadora</title>
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Brube Calc">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
+  <link rel="shortcut icon" href="ico/favicon.ico">
+  <link rel="apple-touch-icon" href="ico/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="brand">
+      <h2>Brube Calc <span class="brand-page">- Calculadora</span></h2>
+    </div>
+
+    <div class="empresa-row">
+      <div class="empresa-bar">
+        <img class="logo-img logo-empresa" alt="Logo da empresa" hidden>
+        <span class="empresa-nome" data-config="empresa"></span>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-inicio" onclick="irInicio()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11V10.5"/></svg>
+          <span>Início</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="field">
+        <label for="filamento">Filamento (R$/Kg)</label>
+        <input id="filamento" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+      </div>
+      <div class="field full">
+        <label for="impressoraFav">Impressora favorita</label>
+        <select id="impressoraFav" onchange="aplicarImpressoraFavorita()"></select>
+        <p class="field-hint">Só aparecem as marcadas com ★ nas Configurações.</p>
+      </div>
+      <div class="field">
+        <label for="potencia">Potência (W)</label>
+        <input id="potencia" type="number" inputmode="decimal" min="0" step="1">
+      </div>
+      <div class="field">
+        <label for="kwh">Preço kWh (R$)</label>
+        <input id="kwh" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+      </div>
+      <div class="field">
+        <label for="gramas">Gramas (total)</label>
+        <input id="gramas" type="number" inputmode="decimal" min="0" step="0.1" placeholder="Ex.: 250">
+      </div>
+      <div class="field">
+        <label for="tempo">Tempo (HH:MM)</label>
+        <input id="tempo" type="text" inputmode="numeric" data-formato="tempo" placeholder="00:00">
+      </div>
+      <div class="field">
+        <label for="lucro">Lucro (%)</label>
+        <input id="lucro" type="number" inputmode="decimal" min="0" step="1" value="0">
+      </div>
+      <div class="field full">
+        <label for="quantidade">Quantidade de peças</label>
+        <input id="quantidade" type="number" inputmode="numeric" min="1" step="1" value="1">
+      </div>
+    </div>
+
+    <details class="extras">
+      <summary>
+        <span>Extras (opcional)</span>
+        <span class="chevron">›</span>
+      </summary>
+      <p class="extras-hint">Deixe em branco ou zero para não afetar o cálculo. Marque as opções para somar os valores das Configurações (por peça).</p>
+      <div class="grid">
+        <div class="field">
+          <label for="desgaste">Desgaste/manutenção (R$/h)</label>
+          <input id="desgaste" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+        </div>
+        <div class="field">
+          <label for="falha">Taxa de falha (%)</label>
+          <input id="falha" type="number" inputmode="decimal" min="0" step="1" placeholder="0">
+        </div>
+        <div class="field">
+          <label for="maoObra">Mão de obra (R$)</label>
+          <input id="maoObra" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+        </div>
+        <div class="field">
+          <label for="embalagem">Outros extras (R$)</label>
+          <input id="embalagem" type="text" inputmode="decimal" data-formato="moeda" placeholder="R$ 0,00">
+        </div>
+        <div class="field full extras-checks">
+          <label class="check-opcao">
+            <input type="checkbox" id="usarArgolas" onchange="salvarCampos()">
+            <span>Argolas chaveiro <small id="lblArgolas">(R$ 0,00)</small></span>
+          </label>
+          <label class="check-opcao">
+            <input type="checkbox" id="usarEmbalagem" onchange="salvarCampos()">
+            <span>Embalagem <small id="lblEmbalagem">(R$ 0,00)</small></span>
+          </label>
+        </div>
+      </div>
+    </details>
+
+    <div class="actions">
+      <button type="button" onclick="calcular()">Calcular</button>
+      <button type="button" class="secondary" onclick="gerar()">📄 Gerar Orçamento</button>
+    </div>
+
+    <div class="resultado">
+      <div class="row"><span>Filamento</span><b id="custoFilamento">R$ 0,00</b></div>
+      <div class="row"><span>Energia</span><b id="custoEnergia">R$ 0,00</b></div>
+      <div class="row" id="rowExtras" hidden><span>Extras</span><b id="custoExtras">R$ 0,00</b></div>
+      <div class="row"><span>Lucro</span><b id="valorLucro">R$ 0,00</b></div>
+      <div class="row"><span>Custo total</span><b id="totalEl">R$ 0,00</b></div>
+      <div class="row"><span>Custo por peça</span><b id="custoUnit">R$ 0,00</b></div>
+
+      <div class="highlight">
+        <div class="card-total unit">
+          <span>Valor por peça</span>
+          <strong id="valorUnit">R$ 0,00</strong>
+        </div>
+        <div class="card-total">
+          <span>Venda total</span>
+          <strong id="valorVenda">R$ 0,00</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/formatadores.js"></script>
+  <script src="js/impressoras.js"></script>
+  <script src="js/calculadora.js"></script>
+  <script src="js/pwa.js"></script>
+  <script src="js/voltar-android.js"></script>
+</body>
+
+</html>
