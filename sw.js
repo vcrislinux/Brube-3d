@@ -1,4 +1,4 @@
-const CACHE = "brube3d-v21";
+const CACHE = "brube3d-v22";
 const ASSETS = [
   "index.html",
   "calculadora.html",
